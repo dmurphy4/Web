@@ -2,19 +2,31 @@
 <head>
   <link rel="stylesheet" type="text/css" href="main.css">
   <title>This is my Title</title>
+  <script
+    src="http://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous">
+  </script>
   <script>
   $(document).ready(function() {
-  $.ajax({
-    headers: { 'X-Auth-Token': '354a795d756147a382579a07533fdf46' },
-    url: 'http://api.football-data.org/v1/fixtures?timeFrame=n1',
-    dataType: 'json',
-    type: 'GET',
-  }).done(function(response) {
-    // do something with the response, e.g. isolate the id of a linked resource
-    var regex = /.*?(\d+)$/; // the ? makes the first part non-greedy
-    var res = regex.exec(response.fixtures[0]._links.awayTeam.href);
-    var teamId = res[1];
-    console.log(teamId);
+    $("#soccerButton").click(function(e){
+      var value = $("#bballDate").val();
+      e.preventDefault();
+      //console.log(myurl);
+      var myurl = 'https://api.mysportsfeeds.com/v1.1/pull/nba/2016-2017-regular/daily_player_stats.json?fordate=';
+      myurl += value;
+      myurl += '&playerstats=3PM';
+      console.log(myurl);
+      $.ajax({
+        url: myurl,
+        dataType: 'json',
+        type: 'GET',
+      }).done(function(response) {
+        // do something with the response, e.g. isolate the id of a linked resource
+        console.log(response);
+
+
+        });
     });
   });
   </script>
@@ -38,6 +50,7 @@
   </table>
   <br><br><br><br>
   <p>Main Project Menu</p>
-  <!--<button type="button" onclick="">Click Me!</button>-->
+  Enter A date in the format YYYYMMDD: <input type="text" id="bballDate" value=""><br><br>
+  <button id="soccerButton">Here</button>
 </body>
 </html>
