@@ -2,8 +2,42 @@
 <head>
   <link rel="stylesheet" type="text/css" href="main.css">
   <title>This is my Title</title>
+  <script>
+  $(document).ready(function() {
+  $.ajax({
+    headers: { 'X-Auth-Token': '354a795d756147a382579a07533fdf46' },
+    url: 'http://api.football-data.org/v1/fixtures?timeFrame=n1',
+    dataType: 'json',
+    type: 'GET',
+  }).done(function(response) {
+    // do something with the response, e.g. isolate the id of a linked resource
+    var regex = /.*?(\d+)$/; // the ? makes the first part non-greedy
+    var res = regex.exec(response.fixtures[0]._links.awayTeam.href);
+    var teamId = res[1];
+    console.log(teamId);
+    });
+  });
+  </script>
 </head>
 <body>
+  <table cellpadding="0px" cellspacing="0px" id="navBar">
+    <tr>
+        <td>
+            <a class="selected" href="main.html">Home</a>
+        </td>
+        <td>
+            <a href="page1.html">Page 1</a>
+        </td>
+        <td>
+            <a href="page2.html">Page 2</a>
+        </td>
+        <td>
+            <a href="page3.html">Page 3</a>
+        </td>
+    </tr>
+  </table>
+  <br><br><br><br>
   <p>Main Project Menu</p>
+  <!--<button type="button" onclick="">Click Me!</button>-->
 </body>
 </html>
