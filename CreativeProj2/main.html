@@ -1,7 +1,7 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="main.css">
-  <title>This is my Title</title>
+  <title>Sports Stats</title>
   <script
     src="http://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -13,22 +13,25 @@
       var value = $("#bballDate").val();
       e.preventDefault();
       //console.log(myurl);
-      var myurl = 'https://api.mysportsfeeds.com/v1.1/pull/nba/2016-2017-regular/daily_player_stats.json?fordate=';
-      myurl += value;
-      myurl += '&playerstats=3PM';
+      var myurl = 'https://api.mysportsfeeds.com/v1.1/pull/nfl/';//'https://api.mysportsfeeds.com/v1.1/pull/nba/2016-2017-regular/daily_player_stats.json?fordate=';
+      myurl += value;//this needs to be a value between 2015-2017 + {regular or playoffs} or 2014 regular it ends up looking like this: "20155-2016-regular"
+      myurl += '/cumulative_player_stats.json?playerstats=Att,Comp,Yds,TD'//'&playerstats=3PM';
       console.log(myurl);
       $.ajax({
+        beforeSend: function(request) { //see https://www.mysportsfeeds.com/data-feeds/api-docs/# for authorization information
+                      request.setRequestHeader("Authorization: Basic presjack:Malacandra2191");
+                    }
         url: myurl,
         dataType: 'json',
-        type: 'GET',
+        type: 'POST', //I think because we are submitting headers, but I'm not sure
       }).done(function(response) {
         // do something with the response, e.g. isolate the id of a linked resource
         console.log(response);
 
 
-        });
-    });
-  });
+        });//end ajax done function
+    });//end #soccerButton
+  });//end document ready
   </script>
 </head>
 <body>
@@ -50,7 +53,7 @@
   </table>
   <br><br><br><br>
   <p>Main Project Menu</p>
-  Enter A date in the format YYYYMMDD: <input type="text" id="bballDate" value=""><br><br>
+  <p>Enter A date in the format YYYYMMDD:</p> <input type="text" id="bballDate" value=""><br><br>
   <button id="soccerButton">Here</button>
 </body>
 </html>
