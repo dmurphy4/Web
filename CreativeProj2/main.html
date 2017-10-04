@@ -24,8 +24,10 @@
       }).done(function(response) {
         // do something with the response, e.g. isolate the id of a linked resource
         console.log(response);
+        $("#Facts").html(response);
         });//end ajax done function
-    });//end #soccerButton
+
+    });//end #numbutton
   });//end document ready
   </script>
 </head>
@@ -49,6 +51,7 @@
   <br><br><br><br>
   <p>Main Project Menu</p>
   <p>Enter a number:</p> <input type="text" id="number" value=""><br><br>
-  <button id="numbutton">Here</button>
+  <button id="numbutton">Click here!</button>
+  <p id="Facts"></p>
 </body>
 </html>
