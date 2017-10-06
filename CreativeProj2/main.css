@@ -32,6 +32,10 @@ body{
 	text-align: center;
 }
 
+#container h2 {
+	font-weight: 100;
+}
+
 #numbutton {
 	display: inline-block;
 	color: #000;
