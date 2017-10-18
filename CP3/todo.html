@@ -10,10 +10,22 @@
   </head>
   <body ng-app="todo">
 
-    <form ng-submit="addTask()">
+    <body ng-app="todo">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <ui-view></ui-view>
+        </div>
+      </div>
+
+    <script type="text/ng-template" id="/home.html">
+      <div class="page-header">
+        <h1>To Do List</h1>
+      </div>
+
+    <form ng-submit="addTask()" style="margin-top:30px;">
       <h3>Add new task</h3>
       <div class="form-group">
-        <input type="text" ng-model="toDoInput" placeholder="Add New Task"></input>
+        <input type="text" placeholder="Add New Task" ng-model="toDoInput"></input>
       </div>
       <button type="submit">Add</button>
     </form>

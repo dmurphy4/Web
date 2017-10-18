@@ -9,11 +9,11 @@ function($stateProvider, $urlRouterProvider) {
       templateUrl: '/home.html',
       controller: 'MainCtrl'
     })
-    //.state('tasks', {
-    //  url: '/tasks/{id}',
-    //  templateUrl: '/tasks.html',
-    //  controller: 'TasksCtrl'
-    //});
+    .state('tasks', {
+      url: '/tasks/{id}',
+      templateUrl: '/tasks.html',
+      controller: 'TasksCtrl'
+    });
 
   $urlRouterProvider.otherwise('home');
 }])
@@ -23,28 +23,31 @@ function($stateProvider, $urlRouterProvider) {
   };
   return o;
 }])
-
-.controller('MainCtrl',['$scope','postFactory',
-function($scope,taskFactory){
-  $scope.tasks = [];
+.controller('MainCtrl',[
+'$scope',
+'taskFactory',
+function($scope, taskFactory){
+  $scope.tasks = taskFactory.tasks;
 
   $scope.addTask = function(){
     //if($scope.formContent === ''){return;}
-    $scope.test = 'Hello world!';
-    console.log($scope.test);
+//    $scope.tasks = taskFactory.tasks;
     $scope.tasks.push({
       job:$scope.toDoInput,
       breakdown:[],
       done:false
     });
-    console.log($scope.tasks)
-    $scope.toDoInput = 'Add New Task';
+    $scope.toDoInput = '';
   };//add task
 
   $scope.removeTask = function(){
     var l = $scope.tasks;
     $scope.tasks = [];
-    angular.forEach(x in l)
+
+    angular.forEach(l,function(data){
+       $scope.tasks.push(data);
+  });
+      console.log(x)
       if(!x.done) $scope.tasks.push(x);
   };//removeTask function
 
@@ -52,20 +55,15 @@ function($scope,taskFactory){
 .controller('TasksCtrl', [
 '$scope',
 '$stateParams',
-'postFactory',
-function($scope, $stateParams, postFactory){
-  $scope.post = postFactory.posts[$stateParams.id];
+'taskFactory',
+function($scope, $stateParams, taskFactory){
+  $scope.tasks = taskFactory.tasks[$stateParams.id];
 
-  $scope.addComment = function(){
-    if($scope.body === '') { return; }
-    $scope.post.comments.push({
+  $scope.addSubJob = function(){
+    //if($scope.body === '') { return; }
+    $scope.task.comments.push({
       body: $scope.body,
-      upvotes: 0
     });
     $scope.body = '';
-  };
-
-  $scope.incrementUpvotes = function(comment){
-    comment.upvotes += 1;
   };
 }]);
