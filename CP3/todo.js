@@ -47,8 +47,7 @@ function($scope, taskFactory){
     angular.forEach(l,function(data){
        $scope.tasks.push(data);
   });
-      console.log(x)
-      if(!x.done) $scope.tasks.push(x);
+      //if(!x.done) $scope.tasks.push(x);
   };//removeTask function
 
 }])//end of controller
