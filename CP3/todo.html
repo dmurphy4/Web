@@ -1,0 +1,35 @@
+<html>
+  <head>
+  <title>To Do List</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+
+  <script src="todo.js"></script>
+  </head>
+  <body ng-app="todo">
+
+    <form ng-submit="addTask()">
+      <h3>Add new task</h3>
+      <div class="form-group">
+        <input type="text" ng-model="toDoInput" placeholder="Add New Task"></input>
+      </div>
+      <button type="submit">Add</button>
+    </form>
+
+    <div ng-repeat="task in tasks">
+      <input type="checkbox" ng-model="task.done">
+      <span ng-bind="task.job">
+        {{task.job}}
+      </span>
+    </div>
+
+    <div>
+      <button ng-click="removeTask()">Remove Marked</button>
+    </div>
+
+  </body>
+
+
+</html>
