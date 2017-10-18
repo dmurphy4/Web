@@ -1,4 +1,4 @@
-angular.module('New',['ui.router'])
+angular.module('todo',['ui.router'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',
@@ -25,7 +25,7 @@ function($stateProvider, $urlRouterProvider) {
 }])
 
 .controller('MainCtrl',['$scope','postFactory',
-function($scope,postFactory){
+function($scope,taskFactory){
   $scope.tasks = [];
 
   $scope.addTask = function(){
