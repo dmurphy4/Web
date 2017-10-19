@@ -32,6 +32,7 @@ function($scope, taskFactory){
   $scope.addTask = function(){
     //if($scope.formContent === ''){return;}
 //    $scope.tasks = taskFactory.tasks;
+    if($scope.toDoInput === '') { return; }
     $scope.tasks.push({
       job:$scope.toDoInput,
       breakdown:[],
@@ -39,14 +40,17 @@ function($scope, taskFactory){
     });
     $scope.toDoInput = '';
   };//add task
-
   $scope.removeTask = function(){
     var l = $scope.tasks;
     $scope.tasks = [];
 
     angular.forEach(l,function(data){
+      if (!data.done)
+      {
        $scope.tasks.push(data);
+      }
   });
+
       //if(!x.done) $scope.tasks.push(x);
   };//removeTask function
 
@@ -60,7 +64,8 @@ function($scope, $stateParams, taskFactory){
 
   $scope.addSubJob = function(){
     //if($scope.body === '') { return; }
-    $scope.task.comments.push({
+    if($scope.body === '') { return; }
+    $scope.task.subjob.push({
       body: $scope.body,
     });
     $scope.body = '';
