@@ -34,7 +34,7 @@
 
     <div ng-repeat="task in tasks" class="tasks bordered">
       <input type="checkbox" ng-model="task.done" class="removal">
-      <span ng-bind="task.job"></span>
+    
         {{task.job}}
       <a href="#/posts/{{tasks.indexOf(task)}}">Details</a>
     </div>
