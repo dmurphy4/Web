@@ -34,9 +34,9 @@
 
     <div ng-repeat="task in tasks" class="tasks bordered">
       <input type="checkbox" ng-model="task.done" class="removal">
-    
+
         {{task.job}}
-      <a href="#/posts/{{tasks.indexOf(task)}}">Details</a>
+      <a href="#/tasks/{{tasks.indexOf(task)}}">Details</a>
     </div>
     <br>
     <button ng-click="removeTask()">Remove Marked</button>
@@ -48,11 +48,6 @@
         </h3>
       </div>
 
-      <div ng-repeat="details in task.job">
-        <span style="font-size:20px; margin-left:10px;">
-          {{comment.body}}
-        </span>
-      </div>
       <form ng-submit="addSubJob()"
         style="margin-top:30px;">
         <h3>Add a subtask to do</h3>
@@ -65,6 +60,13 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit Subtask</button>
       </form>
+
+
+      <div ng-repeat="details in task.breakdown">
+        <span style="font-size:20px; margin-left:10px;">
+          {{details.body}}
+        </span>
+      </div>
 
   </script>
   </body>

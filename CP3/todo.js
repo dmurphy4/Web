@@ -35,8 +35,8 @@ function($scope, taskFactory){
     if($scope.toDoInput === '') { return; }
     $scope.tasks.push({
       job:$scope.toDoInput,
-      breakdown:[],
-      done:false
+      done:false,
+      breakdown:[]
     });
     $scope.toDoInput = '';
   };//add task
@@ -60,14 +60,15 @@ function($scope, taskFactory){
 '$stateParams',
 'taskFactory',
 function($scope, $stateParams, taskFactory){
-  $scope.tasks = taskFactory.tasks[$stateParams.id];
+  $scope.task = taskFactory.tasks[$stateParams.id];
 
   $scope.addSubJob = function(){
     //if($scope.body === '') { return; }
     if($scope.body === '') { return; }
-    $scope.task.subjob.push({
+    $scope.task.breakdown.push({
       body: $scope.body,
     });
+    console.log($scope.task.breakdown)
     $scope.body = '';
   };
 }]);
